@@ -2,7 +2,8 @@ import pandas as pd
 import numpy as np
 from sklearn.neighbors import KNeighborsClassifier
 
-carHeader = ["car", "price", "tech", "comfort"]
+carHeader = ["buying", "maint",
+             "doors", "persons", "lug_boot", "safety", "value"]
 
 carData = pd.read_csv(
     "week03data/car.data",
@@ -17,6 +18,7 @@ mpgData = pd.read_csv("week03data/auto-mpg.data",
                       header=None, names=mpgHeader, na_values="?")
 
 print(mpgData)
+mpgData.head
 
 studentHeader = []
 studentDAta = pd.read_csv("week03data/student-mat.csv", na_values="?")
