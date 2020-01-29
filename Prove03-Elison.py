@@ -135,22 +135,10 @@ catList1 = ["school", "sex", "address", "famsize", "Pstatus", "schoolsup", "roma
             "internet", "guardian", "Mjob", "Fjob", "famsup", "paid", "activities", "nursery", "higher"]
 
 studentDp[catList1] = studentDp[catList1].astype('category')
-studentDp["school"] = studentDp["school"].cat.codes
-studentDp["sex"] = studentDp["sex"].cat.codes
-studentDp["address"] = studentDp["address"].cat.codes
-studentDp["famsize"] = studentDp["famsize"].cat.codes
-studentDp["Pstatus"] = studentDp["Pstatus"].cat.codes
-studentDp["schoolsup"] = studentDp["schoolsup"].cat.codes
-studentDp["romantic"] = studentDp["romantic"].cat.codes
-studentDp["internet"] = studentDp["internet"].cat.codes
-studentDp["guardian"] = studentDp["guardian"].cat.codes
-studentDp["Mjob"] = studentDp["Mjob"].cat.codes
-studentDp["Fjob"] = studentDp["Fjob"].cat.codes
-studentDp["famsup"] = studentDp["famsup"].cat.codes
-studentDp["paid"] = studentDp["paid"].cat.codes
-studentDp["activities"] = studentDp["activities"].cat.codes
-studentDp["nursery"] = studentDp["nursery"].cat.codes
-studentDp["higher"] = studentDp["higher"].cat.codes
+
+for i in catList1:
+    studentDp[i] = studentDp[i].cat.codes
+
 # print(studentDp.reason.value_counts())
 studentDp = pd.get_dummies(studentDp, columns=["reason"]).head()
 
