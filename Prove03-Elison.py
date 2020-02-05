@@ -129,22 +129,25 @@ print(
 #######################################################################
 # Student Data
 #######################################################################
-studentDp = pd.read_csv("week03data/student-mat.csv", sep=';', na_values="?")
+studentDf = pd.read_csv("week03data/student-mat.csv", sep=';', na_values="?")
 
+# Make a list of the categories that will be label encoded
 catList1 = ["school", "sex", "address", "famsize", "Pstatus", "schoolsup", "romantic",
             "internet", "guardian", "Mjob", "Fjob", "famsup", "paid", "activities", "nursery", "higher"]
 
-studentDp[catList1] = studentDp[catList1].astype('category')
+# Set the data type of the columns in the catList1 as category 
+studentDf[catList1] = studentDf[catList1].astype('category')
+
 
 for i in catList1:
-    studentDp[i] = studentDp[i].cat.codes
+    studentDf[i] = studentDf[i].cat.codes
 
-# print(studentDp.reason.value_counts())
-studentDp = pd.get_dummies(studentDp, columns=["reason"]).head()
+# One hot encode the reason for choosing the school
+studentDf = pd.get_dummies(studentDf, columns=["reason"]).head()
 
-stuData = studentDp.drop(columns=["G3"])
+stuData = studentDf.drop(columns=["G3"])
 
-stuTarget = np.array(studentDp.G3)
+stuTarget = np.array(studentDf.G3)
 
 stuAccuracy = round(regressionAccuracy(stuData, stuTarget), 3)
 print(
